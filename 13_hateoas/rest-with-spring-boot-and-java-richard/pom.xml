@@ -85,6 +85,12 @@
 		</dependency>
 		
 		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
@@ -106,6 +112,24 @@
 			       	<url>jdbc:mysql://localhost:3306/rest_with_spring_boot_richard?useTimezone=true&amp;serverTimezone=UTC&amp;useSSL=false</url>
 			        <user>root</user>
 			        <password>adm123</password>
+			    </configuration>
+			</plugin>
+			 <plugin>
+			     <groupId>org.apache.maven.plugins</groupId>
+			     <artifactId>maven-dependency-plugin</artifactId>
+			     <executions>
+			         <execution>
+			             <goals>
+			                 <goal>properties</goal>
+			             </goals>
+			         </execution>
+			     </executions>
+			 </plugin>
+			<plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-surefire-plugin</artifactId>
+			    <configuration>
+			        <argLine>-javaagent:${settings.localRepository}/org/mockito/mockito-core/${mockito.version}/mockito-core-${mockito.version}.jar</argLine>
 			    </configuration>
 			</plugin>
 		</plugins>
