@@ -37,7 +37,7 @@ public class PersonController {
 	@GetMapping(value ="/{id}",
 		produces = {CustomMediaType.APPLICATION_JSON, CustomMediaType.APPLICATION_XML,
 				"application/x-yaml"})
-	public PersonVO finfById(@PathVariable Long id){
+	public PersonVO findById(@PathVariable Long id){
 		return service.findById(id);
 	}
 
