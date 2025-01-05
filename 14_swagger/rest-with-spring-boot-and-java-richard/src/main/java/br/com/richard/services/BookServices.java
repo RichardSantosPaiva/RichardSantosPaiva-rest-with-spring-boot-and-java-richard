@@ -20,7 +20,6 @@ public class BookServices {
 	public List<Book>findAll(){	
 		
 		logger.info("findig all books");
-		
 		List<Book> listBook = new ArrayList<>();
 		DecimalFormat decimalFormat = new DecimalFormat("#.00");
 		decimalFormat.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.US));
@@ -35,7 +34,39 @@ public class BookServices {
 			listBook.add(book);
 		}
 		
-		return listBook;
-		
+		return listBook;	
 	}
+	
+	public Book findById(Long id){	
+			
+			logger.info("findig one book");
+			DecimalFormat decimalFormat = new DecimalFormat("#.00");
+			decimalFormat.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.US));
+
+			Book oneBook =  new Book();
+			
+			oneBook.setAuthor("author" + id);
+			oneBook.setLaunchDate(new Date());;
+			String formattedPrice = decimalFormat.format(Math.random()*100);
+			oneBook.setPrice(Double.parseDouble(formattedPrice.replaceAll(",", ".")));
+			oneBook.setTitle("title"+ id);
+			
+			return  oneBook;	
+	}
+	
+	public Book create(Book book){	
+		logger.info("create one book");
+		return  book;	
+	}
+	
+	public Book update(Book book){	
+		logger.info("update one book");
+		return  book;	
+	}
+	
+	public void delete(Long id){	
+		logger.info("delete one book");
+	}
+	
+	
 }

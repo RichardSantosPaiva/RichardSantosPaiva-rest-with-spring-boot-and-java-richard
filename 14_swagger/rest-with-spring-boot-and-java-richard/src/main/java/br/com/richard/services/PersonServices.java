@@ -1,4 +1,4 @@
-package br.com.richard.services;
+		package br.com.richard.services;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
