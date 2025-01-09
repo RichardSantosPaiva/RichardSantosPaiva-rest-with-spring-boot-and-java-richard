@@ -38,7 +38,7 @@ public class BookServices {
 
 	public BookVO findById(Long id) {
 		
-		logger.info("Finding one book!");
+		logger.info("Finding one Book!");
 		
 		var entity = repository.findById(id)
 			.orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
@@ -47,30 +47,30 @@ public class BookServices {
 		return vo;
 	}
 	
-	public BookVO create(BookVO book) {
+	public BookVO create(BookVO Book) {
 
-		if (book == null) throw new RequiredObjectIsNullException();
+		if (Book == null) throw new RequiredObjectIsNullException();
 		
-		logger.info("Creating one book!");
-		var entity = DozerMapper.parseObject(book, Book.class);
+		logger.info("Creating one Book!");
+		var entity = DozerMapper.parseObject(Book, Book.class);
 		var vo =  DozerMapper.parseObject(repository.save(entity), BookVO.class);
 		vo.add(linkTo(methodOn(BookController.class).findById(vo.getKey())).withSelfRel());
 		return vo;
 	}
 	
-	public BookVO update(BookVO book) {
+	public BookVO update(BookVO Book) {
 
-		if (book == null) throw new RequiredObjectIsNullException();
+		if (Book == null) throw new RequiredObjectIsNullException();
 		
-		logger.info("Updating one book!");
+		logger.info("Updating one Book!");
 		
-		var entity = repository.findById(book.getKey())
+		var entity = repository.findById(Book.getKey())
 			.orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
 
-		entity.setAuthor(book.getAuthor());
-		entity.setLaunchDate(book.getLaunchDate());
-		entity.setPrice(book.getPrice());
-		entity.setTitle(book.getTitle());
+		entity.setAuthor(Book.getAuthor());
+		entity.setLaunchDate(Book.getLaunchDate());
+		entity.setPrice(Book.getPrice());
+		entity.setTitle(Book.getTitle());
 		
 		var vo =  DozerMapper.parseObject(repository.save(entity), BookVO.class);
 		vo.add(linkTo(methodOn(BookController.class).findById(vo.getKey())).withSelfRel());
@@ -79,7 +79,7 @@ public class BookServices {
 	
 	public void delete(Long id) {
 		
-		logger.info("Deleting one book!");
+		logger.info("Deleting one Book!");
 		
 		var entity = repository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
